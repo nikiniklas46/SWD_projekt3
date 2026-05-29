@@ -1,0 +1,28 @@
+services:
+  server:
+    build: .
+    container_name: pv_server
+    command: python Source/server.py
+    ports:
+      - "5000:5000"
+    environment:
+      - PYTHONPATH=/app
+
+  dashboard:
+    build: .
+    container_name: pv_dashboard
+    command: streamlit run Source/app.py --server.address=0.0.0.0
+    ports:
+      - "8501:8501"
+    environment:
+      - PYTHONPATH=/app
+      - SERVER_URL=http://server:5000
+    depends_on:
+      - server
+
+  test:
+    build: .
+    container_name: pv_tests
+    command: python -m pytest
+    environment:
+      - PYTHONPATH=/app

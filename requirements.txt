@@ -1,0 +1,9 @@
+streamlit
+pandas
+pytest
+pyyaml
+python-dotenv
+flask
+requests
+black
+ruff

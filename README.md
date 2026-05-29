@@ -18,8 +18,22 @@ Das Dashboard kann Energiedaten aus einer CSV-Datei oder von einem lokalen Serve
 ## Projektstruktur
 
 ```text
-Projekt-3/
+Projekt-3-und-4/
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+├── data/
+│   ├── input/
+│   │   └── example_data.csv
+│   └── output/
+│       └── README.md
+├── documentation/
+│   ├── Architecture.md
+│   ├── Dashboard_specs.md
+│   ├── project_description.md
+│   └── task_distribution.md
 ├── Source/
+│   ├── __init__.py
 │   ├── app.py
 │   ├── app_connector.py
 │   ├── calculations.py
@@ -27,13 +41,14 @@ Projekt-3/
 │   ├── data_storage.py
 │   ├── server.py
 │   └── utils/
+│       ├── __init__.py
 │       └── logger.py
-├── data/
-│   └── input/
-│       └── example_data.csv
 ├── tests/
-├── documentation/
+│   ├── test_calculations.py
+│   ├── test_data_loader.py
+│   └── test_integration.py
 ├── Dockerfile
 ├── docker-compose.yml
 ├── requirements.txt
+├── .gitignore
 └── README.md

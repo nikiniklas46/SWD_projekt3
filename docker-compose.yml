@@ -1,12 +1,12 @@
 services:
-  server:
-    build: .
+  server: #name vom service
+    build: . #baut das Docker-image aus dem Projektordner
     container_name: pv_server
-    command: python Source/server.py
+    command: python Source/server.py 
     ports:
-      - "5000:5000"
+      - "5000:5000" #Port-Weiterleitung
     environment:
-      - PYTHONPATH=/app
+      - PYTHONPATH=/app #hilft dabei, dass die Module im Container gefunden werden
 
   dashboard:
     build: .

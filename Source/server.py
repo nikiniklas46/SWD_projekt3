@@ -32,16 +32,16 @@ def simuliere_aktuelle_energiedaten() -> dict[str, float]:
 
 def hole_professor_daten() -> dict[str, float]:
     """
-    Holt aktuelle PV-Daten von einer externen Professor-URL.
+    Holt aktuelle PV-Daten von einer externen URL.
 
-    Wenn keine Professor-URL gesetzt ist oder ein Fehler passiert,
+    Wenn keine URL gesetzt ist oder ein Fehler passiert,
     werden simulierte Daten verwendet.
 
     Returns:
         dict[str, float]: Aktuelle Energiedaten.
     """
     if not PROFESSOR_URL:
-        logger.info("Keine Professor-URL gesetzt. Mock-Daten werden verwendet.")
+        logger.info("Keine URL gesetzt. Mock-Daten werden verwendet.")
         return simuliere_aktuelle_energiedaten()
 
     try:
@@ -81,9 +81,7 @@ def startseite() -> dict[str, str]:
     """
     logger.info("Startseite des Servers wurde aufgerufen.")
 
-    return {
-        "message": "Solar Energy Server läuft."
-    }
+    return {"message": "Solar Energy Server läuft."}
 
 
 @app.route("/api/energy/current")

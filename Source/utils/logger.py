@@ -23,8 +23,7 @@ def setup_logger() -> logging.Logger:
     )
 
     file_handler: logging.FileHandler = logging.FileHandler(
-        "solar_energy_app.log",
-        encoding="utf-8"
+        "solar_energy_app.log", encoding="utf-8"
     )
     file_handler.setFormatter(formatter)
 

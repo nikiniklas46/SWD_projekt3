@@ -26,12 +26,10 @@ def main() -> None:
     """
     st.title("☀️ Solar Energy Dashboard")
 
-    st.write(
-        """
+    st.write("""
         Dieses Dashboard analysiert den Energieverbrauch und die Energieerzeugung.
         Die wichtigsten Variablen sind `verbrauch` und `erzeugung`.
-        """
-    )
+        """)
 
     st.sidebar.header("Einstellungen")
 
@@ -147,9 +145,7 @@ def zeige_diagramme(daten: pd.DataFrame) -> None:
 
     st.subheader("Verbrauch und Erzeugung über Zeit")
 
-    diagramm_daten: pd.DataFrame = daten.set_index("datum")[
-        ["verbrauch", "erzeugung"]
-    ]
+    diagramm_daten: pd.DataFrame = daten.set_index("datum")[["verbrauch", "erzeugung"]]
     st.line_chart(diagramm_daten)
 
     st.subheader("Bilanz über Zeit")

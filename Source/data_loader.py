@@ -8,7 +8,7 @@ from Source.utils.logger import setup_logger
 logger = setup_logger()
 
 
-def lade_daten(dateiquelle: Any = "data/input/example_data.csv") -> pd.DataFrame:
+def lade_daten(dateiquelle: Any = "data/input/example_data.csv") -> pd.DataFrame:  #
     """
     Lädt eine CSV-Datei mit Solarenergiedaten, überprüft sie auf Fehler
     und bereitet die Daten für die Analyse vor.
@@ -53,7 +53,7 @@ def lade_daten(dateiquelle: Any = "data/input/example_data.csv") -> pd.DataFrame
 
     daten.columns = daten.columns.str.strip()
 
-    daten = daten.rename(
+    daten = daten.rename(  # Spaltennamen vereinheitlichen, damit sie später leichter zu verwenden sind
         columns={
             "Datum": "datum",
             "datum": "datum",
@@ -80,9 +80,11 @@ def lade_daten(dateiquelle: Any = "data/input/example_data.csv") -> pd.DataFrame
         st.write("Gefundene Spaltennamen:", list(daten.columns))
         st.stop()
 
-    daten["datum"] = pd.to_datetime(
-        daten["datum"],
-        errors="coerce",
+    daten["datum"] = (
+        pd.to_datetime(  # Datumsspalte werden konvertiert, Fehlerhafte Werte werden zu NaT
+            daten["datum"],
+            errors="coerce",
+        )
     )
 
     daten["verbrauch"] = pd.to_numeric(
@@ -96,9 +98,7 @@ def lade_daten(dateiquelle: Any = "data/input/example_data.csv") -> pd.DataFrame
     )
 
     fehlerhafte_zeilen: pd.DataFrame = daten[
-        daten[["datum", "verbrauch", "erzeugung"]]
-        .isna()
-        .any(axis=1)
+        daten[["datum", "verbrauch", "erzeugung"]].isna().any(axis=1)
     ]
 
     if not fehlerhafte_zeilen.empty:
@@ -121,10 +121,14 @@ def lade_daten(dateiquelle: Any = "data/input/example_data.csv") -> pd.DataFrame
         st.error("Die CSV enthält negative Energiewerte. Bitte Datei prüfen.")
         st.stop()
 
-    daten = daten.sort_values("datum")
+    daten = daten.sort_values(
+        "datum"
+    )  # Daten nach Datum sortieren, damit sie in der Analyse chronologisch sind
 
-    daten["bilanz"] = daten["erzeugung"] - daten["verbrauch"]
-    daten["woche"] = daten["datum"].dt.isocalendar().week.astype(int)
+    daten["bilanz"] = daten["erzeugung"] - daten["verbrauch"]  # Bilanzspalte hinzufügen
+    daten["woche"] = (
+        daten["datum"].dt.isocalendar().week.astype(int)
+    )  # Kalenderwoche hinzufügen
 
     logger.info("Solarenergiedaten erfolgreich geladen und bereinigt.")
 

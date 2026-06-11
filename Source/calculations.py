@@ -62,10 +62,10 @@ def berechne_kennzahlen(
     if strompreis_pro_kwh < 0:
         raise ValueError("Der Strompreis darf nicht negativ sein.")
 
-    taegliche_daten: pd.DataFrame = (
-        gefilterte_daten.groupby("datum")[["verbrauch", "erzeugung"]]
-        .sum()
-        .sort_index()
+    taegliche_daten: (
+        pd.DataFrame
+    ) = (  # nach Datum gruppieren und Verbrauch/Erzeugung summieren, damit die Kennzahlen auf Tagesbasis berechnet werden können
+        gefilterte_daten.groupby("datum")[["verbrauch", "erzeugung"]].sum().sort_index()
     )
 
     taegliche_daten["bilanz"] = (
@@ -79,7 +79,9 @@ def berechne_kennzahlen(
     durchschnitt_verbrauch_tag: float = float(taegliche_daten["verbrauch"].mean())
     durchschnitt_erzeugung_tag: float = float(taegliche_daten["erzeugung"].mean())
 
-    erfasste_tage: int = len(taegliche_daten)
+    erfasste_tage: int = len(
+        taegliche_daten
+    )  # Anzahl der Tage, die im Datensatz erfasst sind
 
     gedeckte_energie: float = min(gesamt_verbrauch, gesamt_erzeugung)
 

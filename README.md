@@ -22,7 +22,7 @@ Das Dashboard besteht aus einem Flask-Backend, das aktuelle PV-Werte von einer e
 
 ## Projektstruktur
 
-
+```text
 SWD_projekt3/
 ├── .github/
 │   └── workflows/
@@ -64,3 +64,4 @@ SWD_projekt3/
 ├── .env.example
 ├── .gitignore
 └── README.md
+```

@@ -7,3 +7,5 @@ flask
 requests
 black
 ruff
+streamlit-autorefresh
+matplotlib

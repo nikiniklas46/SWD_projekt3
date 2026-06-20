@@ -193,3 +193,7 @@ __marimo__/
 solar_energy_app.log
 *.log
 CACHEIDIR.TAG
+
+# Generated professor API snapshots
+data/output/professor_snapshots.csv
+data/Output/professor_snapshots.csv

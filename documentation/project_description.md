@@ -1,14 +1,35 @@
 ﻿# Projektbeschreibung
 
-Dieses Projekt ist ein Solar-Energy-Dashboard zur Analyse von PV- und Energiedaten.
+## Projekttitel
 
-Das Dashboard kann Daten aus zwei Quellen laden:
+Solar Energy Dashboard für PV-Daten
 
-1. CSV-Datei mit Beispiel- oder Testdaten
-2. Lokaler Flask-Server mit simulierten Energiedaten
+## Ziel des Projekts
 
-Die Daten werden bereinigt, geprüft und anschließend im Streamlit-Dashboard angezeigt. Zusätzlich werden wichtige Kennzahlen berechnet, zum Beispiel Gesamtverbrauch, Gesamterzeugung, Energiebilanz, Eigenversorgung und erspartes Geld.
+Ziel des Projekts ist die Entwicklung eines Dashboards zur Anzeige und Auswertung von PV-Daten.
 
-Ziel des Projekts ist der Aufbau einer professionellen Projektstruktur mit Backend, Frontend, Tests, Docker und Dokumentation.
+Die Anwendung ruft aktuelle Photovoltaik-Werte über eine externe Professor-API ab, verarbeitet diese Daten in einem eigenen Backend und stellt sie anschließend in einem Streamlit-Dashboard dar.
 
-Zusätzlich ist das Backend so vorbereitet, dass echte PV-Daten von einer Professor-API geladen werden können. Die URL und der API-Key werden über eine lokale `.env`-Datei verwaltet, damit keine Zugangsdaten in das Git-Repository gelangen.
+## Aufgabenstellung
+
+Das Projekt erfüllt folgende zentrale Anforderungen:
+
+- Backend-Server zum Abruf aktueller PV-Werte aus einer URL
+- Data-Cleaning-Modul
+- Data-Storage-Modul
+- Berechnungsmodul
+- Streamlit-Frontend-Dashboard
+- Logging und Error Handling
+- Modularisierte Python-Struktur
+- Unit- und Integrationstests
+- Docker- und docker-compose-Unterstützung
+- GitHub-Actions-CI
+- Dokumentation und Installationsanleitung
+- Sicherer Umgang mit URL und Credentials über `.env` und `.gitignore`
+
+## Datenquelle
+
+Die Daten werden über die Professor-API abgerufen:
+
+
+https://jupyterhub-wi.rz.fh-ingolstadt.de:8443/data

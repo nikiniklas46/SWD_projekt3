@@ -1,42 +1,50 @@
-
----
-
-## `documentation/dashboard_specification.md`
-
-```markdown
 # Dashboard-Spezifikation
 
-Das Dashboard zeigt Solar- und Energiedaten übersichtlich an.
+## Ziel
+
+Das Dashboard zeigt aktuelle PV-Daten und berechnete Kennzahlen zu Verbrauch und Erzeugung an.
+
+Die Daten stammen von der Professor-API und werden über das eigene Flask-Backend bereitgestellt. Das Dashboard selbst greift nicht direkt auf die Professor-API zu.
 
 ## Datenquellen
 
 Das Dashboard unterstützt zwei Datenquellen:
 
-- CSV-Datei
-- Server-Daten über Flask-API
+- Professor-Server-Daten
+- CSV-Beispieldaten
 
-## Kennzahlen
+Die Professor-Server-Daten sind die Hauptdatenquelle für das finale Dashboard.
 
-Folgende Kennzahlen werden berechnet und angezeigt:
+Die CSV-Beispieldaten dienen als zusätzliche Demonstration des Data-Cleaning-Moduls.
 
-- Gesamtverbrauch
-- Gesamterzeugung
-- Gesamtbilanz
-- Eigenversorgung in Prozent
-- Erspartes Geld
-- Durchschnittlicher Verbrauch pro Tag
-- Durchschnittliche Erzeugung pro Tag
-- Anzahl erfasster Tage
-- Gesamtstatus, zum Beispiel Überschuss oder Netzbezug
+## Aktualisierung
 
-## Visualisierungen
+Das Dashboard kann automatisch aktualisiert werden.
 
-Das Dashboard enthält:
+Das Aktualisierungsintervall kann in der Sidebar eingestellt werden. Bei jeder Aktualisierung fragt das Dashboard den eigenen Flask-Server ab.
 
-- Tabelle mit den geladenen Daten
-- Liniendiagramm für Verbrauch und Erzeugung
-- Balkendiagramm für die Bilanz
+Der Flask-Server ruft anschließend die Professor-API ab und speichert die erhaltenen Werte als Snapshot.
 
-## Fehlerbehandlung
+## Geforderte Kennzahlen
 
-Ungültige CSV-Dateien, fehlende Spalten, negative Werte oder Serverprobleme werden erkannt und dem Benutzer angezeigt.
+Das Dashboard zeigt folgende geforderte Kennzahlen:
+
+- Momentanverbrauch
+- Momentanerzeugung
+- Tagesverbrauch des aktuellen Tages
+- Tageserzeugung des aktuellen Tages
+- Monatsverbrauch
+- Monatserzeugung
+- Jahresverbrauch
+- Jahreserzeugung
+- Verhältnis Verbrauch aus PV zu Gesamtverbrauch für den Tag
+- Verhältnis Verbrauch aus PV zu Gesamtverbrauch für den Monat
+- Verhältnis Verbrauch aus PV zu Gesamtverbrauch für das Jahr
+
+## Einheiten
+
+Die Professor-API liefert momentane Leistungswerte in Watt.
+
+Momentanwerte werden im Dashboard als Leistung angezeigt:
+
+kW

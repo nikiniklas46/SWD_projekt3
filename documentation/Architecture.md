@@ -1,20 +1,14 @@
 # Architektur
 
-Das Projekt ist in mehrere Bereiche aufgeteilt.
+## Überblick
 
-## Backend
+Das Projekt besteht aus einem Backend, einem Frontend und mehreren unterstützenden Modulen.
 
-Der Backend-Server befindet sich in:
+Das Backend ruft aktuelle PV-Daten von der Professor-API ab. Die Daten werden normalisiert, als Snapshots gespeichert und anschließend vom Dashboard verwendet.
 
-Source/server.py
 
-## Professor-Server und API-Anbindung
-
-Der Backend-Server in `Source/server.py` ist so vorbereitet, dass er PV-Daten von einer externen Professor-URL abrufen kann.
-
-Die Zugangsdaten werden nicht direkt im Code gespeichert. Stattdessen werden sie über eine lokale `.env`-Datei geladen:
-
-```text
-PROFESSOR_API_URL=...
-PROFESSOR_API_KEY=...
-USE_MOCK_DATA=false
+Professor-API
+→ Flask-Backend
+→ Data Storage
+→ Calculation Module
+→ Streamlit-Dashboard

@@ -1,27 +1,34 @@
-# Projekt-3 Solar Energy Dashboard
+# Solar Energy Dashboard
 
-Dieses Projekt ist ein Solar-Energy-Dashboard mit Streamlit, Flask, Pandas und Docker.
+Dieses Projekt ist ein PV-Dashboard zur Anzeige und Auswertung aktueller Photovoltaik-Daten.
 
-Das Dashboard kann Energiedaten aus einer CSV-Datei oder von einem lokalen Server laden. Danach werden Kennzahlen wie Gesamtverbrauch, Gesamterzeugung, Bilanz, Eigenversorgung und erspartes Geld berechnet.
+Das Dashboard besteht aus einem Flask-Backend, das aktuelle PV-Werte von einer externen Professor-API abruft, und einem Streamlit-Frontend, das die Daten visualisiert. Die Anwendung speichert regelmäßig Snapshots der Momentanwerte und berechnet daraus Tages-, Monats- und Jahreskennzahlen.
 
 ## Funktionen
 
-- Laden von Solarenergiedaten aus einer CSV-Datei
-- Abrufen von simulierten Serverdaten über eine Flask-API
-- Berechnung wichtiger Kennzahlen
-- Darstellung der Daten in einem Streamlit-Dashboard
-- Visualisierung von Verbrauch, Erzeugung und Bilanz
-- Fehlerbehandlung und Logging
-- Tests mit pytest
-- Docker-Unterstützung mit Docker Compose
+- Abruf echter PV-Daten über die Professor-API
+- Eigener Flask-Server als Backend
+- Streamlit-Dashboard als Frontend
+- Speicherung von Professor-API-Snapshots
+- Berechnung von Momentan-, Tages-, Monats- und Jahreswerten
+- Verhältnis Verbrauch aus PV zu Gesamtverbrauch für Tag, Monat und Jahr
+- Zeitverlaufsdiagramm für Tageserzeugung und Tagesverbrauch
+- Torten-/Donutdiagramme für den PV-Anteil
+- Dark-Mode-Design
+- Logging und Error Handling
+- Unit- und Integrationstests
+- Docker- und docker-compose-Unterstützung
+- GitHub-Actions-CI mit pytest, Black und Ruff
 
 ## Projektstruktur
 
-```text
-Projekt-3-und-4/
+
+SWD_projekt3/
 ├── .github/
 │   └── workflows/
 │       └── ci.yml
+├── .streamlit/
+│   └── config.toml
 ├── data/
 │   ├── input/
 │   │   └── example_data.csv
@@ -44,11 +51,16 @@ Projekt-3-und-4/
 │       ├── __init__.py
 │       └── logger.py
 ├── tests/
+│   ├── test_app_connector.py
 │   ├── test_calculations.py
 │   ├── test_data_loader.py
-│   └── test_integration.py
+│   ├── test_data_storage.py
+│   ├── test_integration.py
+│   ├── test_pv_calculation.py
+│   └── test_server.py
 ├── Dockerfile
 ├── docker-compose.yml
 ├── requirements.txt
+├── .env.example
 ├── .gitignore
 └── README.md

@@ -10,6 +10,7 @@ COPY Source/ ./Source/
 COPY tests/ ./tests/
 COPY data/ ./data/
 COPY documentation/ ./documentation/
+COPY .streamlit/ ./.streamlit/
 
 ENV PYTHONPATH=/app
 
